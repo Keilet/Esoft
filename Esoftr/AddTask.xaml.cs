@@ -57,6 +57,11 @@ namespace Esoftr
                 task.ExecutorID = int.Parse(exec.Text);
                 task.Status = stat.Text;
                 task.WorkType = wtype.Text;
+                task.CreateDateTime = DateTime.Today;
+
+                db.SaveChanges();
+                MessageBox.Show("Сохранено");
+                Close();
             }
 
 
