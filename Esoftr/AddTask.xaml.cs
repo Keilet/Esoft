@@ -20,6 +20,7 @@ namespace Esoftr
     /// </summary>
     public partial class AddTask : Window
     {
+        int t = 0;
         public AddTask()
         {
             InitializeComponent();
@@ -59,6 +60,41 @@ namespace Esoftr
             }
 
 
+        }
+
+        private void time_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                int times = int.Parse(time.Text);
+                if (times > 50 || times <= 0)
+                {
+                    MessageBox.Show("Ошибка");
+                    time.Clear();
+                }
+                else
+                {
+                    t = int.Parse(time.Text);
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+        
+        private void time_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                char s = Convert.ToChar(time.Text);
+                if ((s <= '0') || (s >= '9'))
+                    MessageBox.Show("You have entered a symbol! Please enter a number");
+            }
+            catch (System.FormatException)
+            {
+                MessageBox.Show("You have entered a symbol! Please enter a number");
+            }
         }
     }
 }

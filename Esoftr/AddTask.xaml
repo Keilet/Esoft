@@ -35,7 +35,7 @@
         <DatePicker x:Name="datep1" Grid.Row="3" Grid.Column="1"  Height="30" Width="230" SelectedDateFormat="Short" HorizontalAlignment="Left"/>
         <DatePicker x:Name="datep2" Grid.Row="4" Grid.Column="1"  Height="30" Width="230" SelectedDateFormat="Short" HorizontalAlignment="Left"/>
         <TextBox x:Name="diff" Grid.Row="0" Grid.Column="3" Height="30" Width="220" BorderBrush="#FF37474F" HorizontalAlignment="Left"/>
-        <TextBox x:Name="time" Grid.Row="1" Grid.Column="3" Height="30" Width="220" BorderBrush="#FF37474F" HorizontalAlignment="Left"/>
+        <TextBox x:Name="time" Grid.Row="1" Grid.Column="3" Height="30" Width="220" BorderBrush="#FF37474F" HorizontalAlignment="Left" TextChanged="time_TextChanged" KeyDown="time_KeyDown"/>
         <ComboBox x:Name="exec" Grid.Row="2" Grid.Column="3" Height="30" Width="220" HorizontalAlignment="Left"/>
         <ComboBox x:Name="stat" Grid.Row="3" Grid.Column="3" Height="30" Width="220" HorizontalAlignment="Left"/>
         <ComboBox x:Name="wtype" Grid.Row="4" Grid.Column="3" Height="30" Width="220" HorizontalAlignment="Left"/>
