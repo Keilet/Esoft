@@ -23,6 +23,23 @@ namespace Esoftr
         public AddTask()
         {
             InitializeComponent();
+            using (Model1 db = new Model1())
+            {
+                List<User> query1 = db.User.ToList();
+                foreach (User b in query1)
+                    if (b.ID < 10)
+                    {
+                        exec.Items.Add(b.FirstName + b.MiddleName + b.LastName);
+                    }
+                stat.Items.Add("запланирована");
+                stat.Items.Add("исполняется");
+                stat.Items.Add("выполнена");
+                stat.Items.Add("отменена");
+
+                wtype.Items.Add("анализ и проектирование");
+                wtype.Items.Add("установка оборудования");
+                wtype.Items.Add("техническое обслуживание и сопровождение");
+            }
         }
 
         private void save_Click(object sender, RoutedEventArgs e)
@@ -40,6 +57,8 @@ namespace Esoftr
                 task.Status = stat.Text;
                 task.WorkType = wtype.Text;
             }
+
+
         }
     }
 }
