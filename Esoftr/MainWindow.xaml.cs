@@ -57,9 +57,9 @@ namespace Esoftr
         {
             using(Model1 db= new Model1()) 
             {
-                if (login.Text.Length>0 && password.Text.Length>0)
+                if (login.Text.Length>0 && password.Password.Length>0)
                 {
-                    string pass = GetHash(password.Text);
+                    string pass = GetHash(password.Password);
                     User user = db.User.Where(p => p.Login.Equals(login.Text) && p.Password.Equals(pass)).FirstOrDefault();
                     if(user!=null)
                     {
