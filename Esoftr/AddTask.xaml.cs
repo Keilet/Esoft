@@ -36,9 +36,9 @@ namespace Esoftr
                 task.CompletedDateTime= datep2.SelectedDate.Value;
                 task.Difficulty = double.Parse(diff.Text);
                 task.Time = int.Parse(time.Text);
-                task.ExecutorID =;
-                task.Status =;
-                task.WorkType =;
+                task.ExecutorID = int.Parse(exec.Text);
+                task.Status = stat.Text;
+                task.WorkType = wtype.Text;
             }
         }
     }
