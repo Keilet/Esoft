@@ -84,6 +84,18 @@ namespace Esoftr
                         MessageBox.Show("Такого пользователя  или пароля не существует");
                     }
                 }
+                else if(login.Text.Length == 0 && password.Password.Length == 0)
+                {
+                    MessageBox.Show("Введите данные");
+                }
+                else if(login.Text.Length > 0 && password.Password.Length == 0)
+                {
+                    MessageBox.Show("Введите пароль");
+                }
+                else if(login.Text.Length == 0 && password.Password.Length > 0)
+                {
+                    MessageBox.Show("Введите логин");
+                }
             }
         }
         public string GetHash(string input)

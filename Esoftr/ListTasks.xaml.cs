@@ -72,6 +72,8 @@ namespace Esoftr
                     lTasks.ItemsSource = query.ToList();
                     exec.Visibility = Visibility.Hidden;
                     label.Visibility = Visibility.Hidden;
+                    add.Visibility = Visibility.Hidden;
+                    del.Visibility = Visibility.Hidden;
                 }
                 List<User> query1 = db.User.ToList();
                 foreach (User b in query1)
@@ -182,6 +184,14 @@ namespace Esoftr
         {
             AddTask ad = new AddTask();
             ad.Show();
+        }
+
+        private void redc_Click(object sender, RoutedEventArgs e)
+        {
+            using (Model1 db= new Model1()) 
+            {
+                
+            }
         }
     }
 }
