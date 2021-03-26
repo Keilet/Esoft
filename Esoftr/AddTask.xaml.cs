@@ -30,7 +30,7 @@ namespace Esoftr
                 foreach (User b in query1)
                     if (b.ID < 10)
                     {
-                        exec.Items.Add(b.FirstName + b.MiddleName + b.LastName);
+                        exec.Items.Add(b.FirstName + b.MiddleName + " " + b.LastName);
                     }
                 stat.Items.Add("запланирована");
                 stat.Items.Add("исполняется");
@@ -54,11 +54,22 @@ namespace Esoftr
                 task.CompletedDateTime= datep2.SelectedDate.Value;
                 task.Difficulty = double.Parse(diff.Text);
                 task.Time = int.Parse(time.Text);
-                task.ExecutorID = int.Parse(exec.Text);
+                string name = exec.Text;
+                string[] mas = name.Split(' ');
+                string firstName = mas[0];
+                string middleName = mas[1];
+                string lastName = mas[2];
+                var names = from a in db.User
+                            where a.FirstName.Equals(firstName) && a.MiddleName.Equals(middleName) && a.LastName.Equals(lastName)
+                            select a;
+                foreach (var u in names)
+                {
+                    task.ExecutorID = u.ID;
+                }
                 task.Status = stat.Text;
                 task.WorkType = wtype.Text;
                 task.CreateDateTime = DateTime.Today;
-
+                db.Task.Add(task);
                 db.SaveChanges();
                 MessageBox.Show("Сохранено");
                 Close();
