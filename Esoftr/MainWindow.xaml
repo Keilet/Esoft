@@ -1,0 +1,29 @@
+﻿<Window x:Class="Esoftr.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Esoftr"
+        mc:Ignorable="d"
+        Title="Esoft" Height="300" Width="300" FontFamily="Calibri" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40px"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="30px"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="Вход" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.333,1.308" FontFamily="Calibri" FontSize="14" FontWeight="Bold" Width="292" HorizontalContentAlignment="Center" Height="40" VerticalContentAlignment="Center" Foreground="#FF37474F"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="Логин:" HorizontalAlignment="Right" RenderTransformOrigin="0.333,1.308" FontFamily="Calibri"  HorizontalContentAlignment="Center" Height="51" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="#FF243238"/>
+        <Label Grid.Column="0" Grid.Row="2" Content="Пароль:" HorizontalAlignment="Right" RenderTransformOrigin="0.333,1.308" FontFamily="Calibri"  HorizontalContentAlignment="Center" Height="51" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="#FF243238"/>
+        <Button x:Name="chg" Content="Забыли пароль?" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="#FF243238" BorderThickness="0,0,0,1" Foreground="#FF243238" Click="chg_Click"/>
+        <Button x:Name="signin" Content="Войти" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Width="120" Height="40" VerticalAlignment="Center" Background="#FF00D9BB" BorderThickness="1" BorderBrush="#FF37474F" Foreground="#FF243238" Click="signin_Click"/>
+        <TextBox x:Name="login" Grid.Row="1" Grid.Column="1" Height="30" Width="180" BorderBrush="#FF37474F" HorizontalAlignment="Left"/>
+        <TextBox x:Name="password" Grid.Row="2" Grid.Column="1" Height="30" Width="180" BorderBrush="#FF37474F" HorizontalAlignment="Left"/>
+    </Grid>
+</Window>
