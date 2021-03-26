@@ -62,27 +62,6 @@ namespace Esoftr
 
         }
 
-        private void time_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                int times = int.Parse(time.Text);
-                if (times > 50 || times <= 0)
-                {
-                    MessageBox.Show("Ошибка");
-                    time.Clear();
-                }
-                else
-                {
-                    t = int.Parse(time.Text);
-                }
-            }
-            catch(Exception ex)
-            {
-
-            }
-        }
-
         private void time_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !((Char.IsDigit(e.Text, 0) || ((e.Text == System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator[0].ToString())
@@ -93,6 +72,33 @@ namespace Esoftr
             string substr = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator[0].ToString();
             int count = (s.Length - s.Replace(substr, "").Length) / substr.Length;
             return count;
+        }
+
+        private void diff_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                int times = int.Parse(diff.Text);
+                if (times > 50 || times <= 0)
+                {
+                    MessageBox.Show("Ошибка");
+                    diff.Clear();
+                }
+                else
+                {
+                    t = int.Parse(diff.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void diff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !((Char.IsDigit(e.Text, 0) || ((e.Text == System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator[0].ToString())
+                && (DS_Count(((TextBox)sender).Text) < 1))));
         }
     }
 }
