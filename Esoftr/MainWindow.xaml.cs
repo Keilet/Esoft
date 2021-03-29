@@ -71,6 +71,9 @@ namespace Esoftr
                             role = 1;
                             ListTasks lt = new ListTasks(role,id);
                             lt.Show();
+                            //MainWindow w = new MainWindow(this);
+                            //w.Show();
+                            //this.Hide();
                         }
                         else
                         {

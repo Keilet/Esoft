@@ -39,14 +39,10 @@ namespace Esoftr
                                 where d.ID.Equals(i)
                                 select new
                                 {
-                                    Title = a.Title,
-                                    Status = a.Status,
-                                    ExecutorFName = b.FirstName,
-                                    ExecutorMName = b.MiddleName,
-                                    ExecutorLName = b.LastName,
-                                    ManagerFName = d.FirstName,
-                                    ManagerMName = d.MiddleName,
-                                    ManagerLName = d.LastName,
+                                    Название = a.Title,
+                                    Статус = a.Status,
+                                    Исполнитель = b.FirstName+b.MiddleName+ " " + b.LastName,
+                                    Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
                                 };
                     lTasks.ItemsSource = query.ToList();
                 }
@@ -60,14 +56,10 @@ namespace Esoftr
                                 where b.ID.Equals(i)
                                 select new
                                 {
-                                    Title = a.Title,
-                                    Status = a.Status,
-                                    ExecutorFName = b.FirstName,
-                                    ExecutorMName = b.MiddleName,
-                                    ExecutorLName = b.LastName,
-                                    ManagerFName = d.FirstName,
-                                    ManagerMName = d.MiddleName,
-                                    ManagerLName = d.LastName,
+                                    Название = a.Title,
+                                    Статус = a.Status,
+                                    Исполнитель = b.FirstName + b.MiddleName + " " + b.LastName,
+                                    Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
                                 };
                     lTasks.ItemsSource = query.ToList();
                     exec.Visibility = Visibility.Hidden;
@@ -113,14 +105,10 @@ namespace Esoftr
                                 where d.ID.Equals(i) && b.FirstName + b.MiddleName + b.LastName == ex
                                 select new
                                 {
-                                    Title = a.Title,
-                                    Status = a.Status,
-                                    ExecutorFName = b.FirstName,
-                                    ExecutorMName = b.MiddleName,
-                                    ExecutorLName = b.LastName,
-                                    ManagerFName = d.FirstName,
-                                    ManagerMName = d.MiddleName,
-                                    ManagerLName = d.LastName,
+                                    Название = a.Title,
+                                    Статус = a.Status,
+                                    Исполнитель = b.FirstName + b.MiddleName + " " + b.LastName,
+                                    Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
                                 };
                     lTasks.ItemsSource = query.ToList();
                 }
@@ -139,14 +127,10 @@ namespace Esoftr
                                 where (b.ID.Equals(i) || d.ID.Equals(i)) && a.Status == st
                                 select new
                                 {
-                                    Title = a.Title,
-                                    Status = a.Status,
-                                    ExecutorFName = b.FirstName,
-                                    ExecutorMName = b.MiddleName,
-                                    ExecutorLName = b.LastName,
-                                    ManagerFName = d.FirstName,
-                                    ManagerMName = d.MiddleName,
-                                    ManagerLName = d.LastName,
+                                    Название = a.Title,
+                                    Статус = a.Status,
+                                    Исполнитель = b.FirstName + b.MiddleName + " " + b.LastName,
+                                    Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
                                 };
                     lTasks.ItemsSource = query.ToList();
                 }
@@ -166,14 +150,10 @@ namespace Esoftr
                                 where d.ID.Equals(i) && b.FirstName + b.MiddleName + b.LastName == ex && a.Status==st
                                 select new
                                 {
-                                    Title = a.Title,
-                                    Status = a.Status,
-                                    ExecutorFName = b.FirstName,
-                                    ExecutorMName = b.MiddleName,
-                                    ExecutorLName = b.LastName,
-                                    ManagerFName = d.FirstName,
-                                    ManagerMName = d.MiddleName,
-                                    ManagerLName = d.LastName,
+                                    Название = a.Title,
+                                    Статус = a.Status,
+                                    Исполнитель = b.FirstName + b.MiddleName +" "+ b.LastName,
+                                    Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
                                 };
                     lTasks.ItemsSource = query.ToList();
                 }
@@ -186,12 +166,9 @@ namespace Esoftr
             ad.Show();
         }
 
-        private void redc_Click(object sender, RoutedEventArgs e)
+        private void lTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            using (Model1 db= new Model1()) 
-            {
-                
-            }
+            
         }
     }
 }
