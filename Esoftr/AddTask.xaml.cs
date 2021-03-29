@@ -21,6 +21,7 @@ namespace Esoftr
     public partial class AddTask : Window
     {
         int t = 0;
+        int i;
         public AddTask()
         {
             InitializeComponent();
@@ -40,6 +41,16 @@ namespace Esoftr
                 wtype.Items.Add("анализ и проектирование");
                 wtype.Items.Add("установка оборудования");
                 wtype.Items.Add("техническое обслуживание и сопровождение");
+            }
+        }
+
+        public AddTask(int id)
+        {
+            using (Model1 db = new Model1())
+            {
+                Model.Task task = db.Task.Where(p => p.ID.Equals(id)).FirstOrDefault();
+                title.Text = task.Title;
+
             }
         }
 

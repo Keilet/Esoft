@@ -168,7 +168,14 @@ namespace Esoftr
 
         private void lTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
+            using (Model1 db = new Model1())
+            {
+                string titl = lTasks.SelectedItems[0].ToString();
+                Model.Task task = db.Task.Where(p => p.Title.Equals(titl)).FirstOrDefault();
+                int id = task.ID;
+                AddTask ad = new AddTask(id);
+                ad.Show();
+            }
         }
     }
 }
