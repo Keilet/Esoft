@@ -1,6 +1,7 @@
 ﻿using Esoftr.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace Esoftr
     {
         int t = 0;
         int i;
+        private bool Put;
         public AddTask()
         {
             InitializeComponent();
@@ -47,6 +49,7 @@ namespace Esoftr
         public AddTask(int id,int ro)
         {
             InitializeComponent();
+            i = id;
             using (Model1 db = new Model1())
             {
                 Model.Task task = db.Task.Where(p => p.ID.Equals(id)).FirstOrDefault();
@@ -67,7 +70,16 @@ namespace Esoftr
                 stat.Items.Add("выполнена");
                 stat.Items.Add("отменена");
                 stat.Text = task.Status;
-                if (stat.Text == "выполнена" || stat.Text == "отменена") { stat.IsEnabled = false; }
+                if (stat.Text == "выполнена" || stat.Text == "отменена") {
+                    title.IsEnabled = false;
+                    desc.IsEnabled = false;
+                    datep1.IsEnabled = false;
+                    datep2.IsEnabled = false;
+                    diff.IsEnabled = false;
+                    time.IsEnabled = false;
+                    exec.IsEnabled = false; 
+                    wtype.IsEnabled = false;
+                }
 
                 wtype.Items.Add("анализ и проектирование");
                 wtype.Items.Add("установка оборудования");
@@ -86,42 +98,89 @@ namespace Esoftr
                     exec.Text = t.FIO;
                 }
                 if (ro == 0) { exec.IsEnabled = false; }
+                Put = true;
             }
         }
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            using(Model1 db = new Model1())
+            if (Put == false)
             {
-                Model.Task task = new Model.Task();
-                task.Title = title.Text;
-                task.Description = desc.Text;
-                task.Deadline = datep1.SelectedDate.Value;
-                task.CompletedDateTime= datep2.SelectedDate.Value;
-                task.Difficulty = double.Parse(diff.Text);
-                task.Time = int.Parse(time.Text);
-                string name = exec.Text;
-                string[] mas = name.Split(' ');
-                string firstName = mas[0];
-                string middleName = mas[1];
-                string lastName = mas[2];
-                var names = from a in db.User
-                            where a.FirstName.Equals(firstName) && a.MiddleName.Equals(middleName) && a.LastName.Equals(lastName)
-                            select a;
-                foreach (var u in names)
+                using (Model1 db = new Model1())
                 {
-                    task.ExecutorID = u.ID;
+                    Model.Task task = new Model.Task();
+                    task.Title = title.Text;
+                    task.Description = desc.Text;
+                    try
+                    {
+                        task.Deadline = datep1.SelectedDate.Value;
+                        task.CompletedDateTime = datep2.SelectedDate.Value;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    task.Difficulty = double.Parse(diff.Text);
+                    task.Time = int.Parse(time.Text);
+                    string name = exec.Text;
+                    string[] mas = name.Split(' ');
+                    string firstName = mas[0];
+                    string middleName = mas[1];
+                    string lastName = mas[2];
+                    var names = from a in db.User
+                                where a.FirstName.Equals(firstName) && a.MiddleName.Equals(middleName) && a.LastName.Equals(lastName)
+                                select a;
+                    foreach (var u in names)
+                    {
+                        task.ExecutorID = u.ID;
+                    }
+                    task.Status = stat.Text;
+                    task.WorkType = wtype.Text;
+                    task.CreateDateTime = DateTime.Today;
+                    db.Task.Add(task);
+                    db.SaveChanges();
+                    MessageBox.Show("Сохранено");
+                    Close();
                 }
-                task.Status = stat.Text;
-                task.WorkType = wtype.Text;
-                task.CreateDateTime = DateTime.Today;
-                db.Task.Add(task);
-                db.SaveChanges();
-                MessageBox.Show("Сохранено");
-                Close();
             }
+            else
+            {
+                using (Model1 db = new Model1())
+                {
+                    Model.Task task = db.Task.Where(p => p.ID.Equals(i)).FirstOrDefault();
+                    task.Title = title.Text;
+                    task.Description = desc.Text;
+                    try
+                    {
+                        task.Deadline = datep1.SelectedDate.Value;
+                        task.CompletedDateTime = datep2.SelectedDate.Value;
+                    }
+                    catch (Exception ex)
+                    {
 
-
+                    }
+                    task.Difficulty = double.Parse(diff.Text);
+                    task.Time = int.Parse(time.Text);
+                    string name = exec.Text;
+                    string[] mas = name.Split(' ');
+                    string firstName = mas[0];
+                    string middleName = mas[1];
+                    string lastName = mas[2];
+                    var names = from a in db.User
+                                where a.FirstName.Equals(firstName) && a.MiddleName.Equals(middleName) && a.LastName.Equals(lastName)
+                                select a;
+                    foreach (var u in names)
+                    {
+                        task.ExecutorID = u.ID;
+                    }
+                    task.Status = stat.Text;
+                    task.WorkType = wtype.Text;
+                    db.Entry(task).State = EntityState.Modified;
+                    db.SaveChanges();
+                    MessageBox.Show("Сохранено");
+                    Close();
+                }
+            }
         }
 
         private void time_PreviewTextInput(object sender, TextCompositionEventArgs e)
