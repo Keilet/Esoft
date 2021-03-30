@@ -43,6 +43,7 @@ namespace Esoftr
                                     Статус = a.Status,
                                     Исполнитель = b.FirstName+b.MiddleName+ " " + b.LastName,
                                     Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
+                                    id = a.ID
                                 };
                     lTasks.ItemsSource = query.ToList();
                 }
@@ -60,6 +61,7 @@ namespace Esoftr
                                     Статус = a.Status,
                                     Исполнитель = b.FirstName + b.MiddleName + " " + b.LastName,
                                     Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
+                                    id = a.ID
                                 };
                     lTasks.ItemsSource = query.ToList();
                     exec.Visibility = Visibility.Hidden;
@@ -109,6 +111,7 @@ namespace Esoftr
                                     Статус = a.Status,
                                     Исполнитель = b.FirstName + b.MiddleName + " " + b.LastName,
                                     Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
+                                    id = a.ID
                                 };
                     lTasks.ItemsSource = query.ToList();
                 }
@@ -131,6 +134,7 @@ namespace Esoftr
                                     Статус = a.Status,
                                     Исполнитель = b.FirstName + b.MiddleName + " " + b.LastName,
                                     Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
+                                    id = a.ID
                                 };
                     lTasks.ItemsSource = query.ToList();
                 }
@@ -154,6 +158,7 @@ namespace Esoftr
                                     Статус = a.Status,
                                     Исполнитель = b.FirstName + b.MiddleName +" "+ b.LastName,
                                     Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
+                                    id=a.ID
                                 };
                     lTasks.ItemsSource = query.ToList();
                 }
@@ -170,12 +175,21 @@ namespace Esoftr
         {
             using (Model1 db = new Model1())
             {
-                string titl = lTasks.SelectedItems[0].ToString();
-                Model.Task task = db.Task.Where(p => p.Title.Equals(titl)).FirstOrDefault();
+                string name = lTasks.SelectedValue. ToString();
+                string[] mas = name.Split(',');
+                string titl = mas[4].Substring(2);
+                string[] mas2 = titl.Split('=');
+                int yt = int.Parse(mas2[1].ToString().Remove(mas2[1].ToString().Length-1));
+                Model.Task task = db.Task.Where(p => p.ID.Equals(yt)).FirstOrDefault();
                 int id = task.ID;
                 AddTask ad = new AddTask(id);
                 ad.Show();
             }
+        }
+
+        private void lTasks_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            
         }
     }
 }

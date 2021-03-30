@@ -46,11 +46,49 @@ namespace Esoftr
 
         public AddTask(int id)
         {
+            InitializeComponent();
             using (Model1 db = new Model1())
             {
                 Model.Task task = db.Task.Where(p => p.ID.Equals(id)).FirstOrDefault();
                 title.Text = task.Title;
+                desc.Text = task.Description;
+                datep1.SelectedDate = task.Deadline;
+                datep2.SelectedDate = task.CompletedDateTime;
+                diff.Text = task.Difficulty.ToString();
+                time.Text = task.Time.ToString();
+                List<User> query1 = db.User.ToList();
+                foreach (User b in query1)
+                    if (b.ID < 10)
+                    {
+                        exec.Items.Add(b.FirstName + b.MiddleName + " " + b.LastName);
+                    }
+                stat.Items.Add("запланирована");
+                stat.Items.Add("исполняется");
+                stat.Items.Add("выполнена");
+                stat.Items.Add("отменена");
+                stat.Text = task.Status;
 
+                wtype.Items.Add("анализ и проектирование");
+                wtype.Items.Add("установка оборудования");
+                wtype.Items.Add("техническое обслуживание и сопровождение");
+                wtype.Text = task.WorkType;
+
+                //var names = from a in db.Task             комбобокс исполнителя
+                //            join b in db.User on a.ExecutorID equals b.ID
+                //            where a.ID.Equals(task.ID)
+                //            select b.FirstName + b.MiddleName + " " + b.LastName;
+                //string exname = names.ToString();
+                //int index = -1;
+                //for (int i = 0; i < exec.Items.Count; i++)
+                //{
+                //    if (exec.Items[i].Equals(names)) index = i;
+                //}
+                //exec.Text = exname;
+
+                //var names = from a in db.Task
+                //            join b in db.User on a.ExecutorID equals b.ID
+                //            select b.FirstName+b.MiddleName+b.LastName;
+                //exec.Text = names.ToString();
             }
         }
 
