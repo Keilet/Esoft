@@ -44,7 +44,7 @@ namespace Esoftr
             }
         }
 
-        public AddTask(int id)
+        public AddTask(int id,int ro)
         {
             InitializeComponent();
             using (Model1 db = new Model1())
@@ -67,28 +67,25 @@ namespace Esoftr
                 stat.Items.Add("выполнена");
                 stat.Items.Add("отменена");
                 stat.Text = task.Status;
+                if (stat.Text == "выполнена" || stat.Text == "отменена") { stat.IsEnabled = false; }
 
                 wtype.Items.Add("анализ и проектирование");
                 wtype.Items.Add("установка оборудования");
                 wtype.Items.Add("техническое обслуживание и сопровождение");
                 wtype.Text = task.WorkType;
-
-                //var names = from a in db.Task             комбобокс исполнителя
-                //            join b in db.User on a.ExecutorID equals b.ID
-                //            where a.ID.Equals(task.ID)
-                //            select b.FirstName + b.MiddleName + " " + b.LastName;
-                //string exname = names.ToString();
-                //int index = -1;
-                //for (int i = 0; i < exec.Items.Count; i++)
-                //{
-                //    if (exec.Items[i].Equals(names)) index = i;
-                //}
-                //exec.Text = exname;
-
-                //var names = from a in db.Task
-                //            join b in db.User on a.ExecutorID equals b.ID
-                //            select b.FirstName+b.MiddleName+b.LastName;
-                //exec.Text = names.ToString();
+                
+                var names = from a in db.Task
+                            join b in db.User on a.ExecutorID equals b.ID
+                            where a.ID.Equals(task.ID)
+                            select new
+                            {
+                                FIO = b.FirstName + b.MiddleName + " " + b.LastName
+                            };
+                foreach (var t in names)
+                {
+                    exec.Text = t.FIO;
+                }
+                if (ro == 0) { exec.IsEnabled = false; }
             }
         }
 

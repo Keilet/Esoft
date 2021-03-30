@@ -182,7 +182,7 @@ namespace Esoftr
                 int yt = int.Parse(mas2[1].ToString().Remove(mas2[1].ToString().Length-1));
                 Model.Task task = db.Task.Where(p => p.ID.Equals(yt)).FirstOrDefault();
                 int id = task.ID;
-                AddTask ad = new AddTask(id);
+                AddTask ad = new AddTask(id,ro);
                 ad.Show();
             }
         }
