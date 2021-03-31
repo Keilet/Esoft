@@ -66,19 +66,16 @@ namespace Esoftr
                         int role;
                         int id;
                         id = user.ID; ;
-                        if (id > 10)
+                        if (id > 10||id<14)
                         {
                             role = 1;
-                            ListTasks lt = new ListTasks(role,id);
+                            TwoWays lt = new TwoWays(role,id);
                             lt.Show();
-                            //MainWindow w = new MainWindow(this);
-                            //w.Show();
-                            //this.Hide();
                         }
                         else
                         {
                             role = 0;
-                            ListTasks lt = new ListTasks(role,id);
+                            TwoWays lt = new TwoWays(role,id);
                             lt.Show();
                         }
                     }

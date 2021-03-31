@@ -16,10 +16,11 @@
         </Grid.RowDefinitions>
         <Button x:Name="add" Grid.Row="0" Width="100" Height="30" Margin="747,10,145,10" Background="#FF00D9BB" Content="Добавить" FontFamily="Calibri" Click="add_Click"/>
         <Button x:Name="del" Grid.Row="0" Width="100" Height="30" Margin="882,10,11.333,10" Background="#FF00D9BB" Content="Удалить" FontFamily="Calibri" Click="del_Click"/>
+        <Button x:Name="redc" Grid.Row="0" Width="100" Height="30" Margin="607,10,285,10" Background="#FF00D9BB" Content="Редактировать" FontFamily="Calibri" Click="redc_Click"/>
         <ComboBox x:Name="exec" Grid.Row="0" Height="30" Width="200" Margin="364,10,429.333,10" SelectionChanged="exec_SelectionChanged"/>
         <ComboBox x:Name="stat" Grid.Row="0" Height="30" Width="150" Margin="92,10,751.333,10" SelectionChanged="stat_SelectionChanged" RenderTransformOrigin="0.57,0.534"></ComboBox>
         <Label Content="Статус задачи:" Grid.Row="0" FontFamily="Calibri" Foreground="#FF243238" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="9,13,0,13"/>
         <Label Content="Исполнитель:" x:Name="label" Grid.Row="0" FontFamily="Calibri" Foreground="#FF243238" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="280,13,0,13"/>
-        <DataGrid x:Name="lTasks" Grid.Row="1" MouseDoubleClick="lTasks_MouseDoubleClick" CellEditEnding="lTasks_CellEditEnding" MouseDown="lTasks_MouseDown"></DataGrid>
+        <DataGrid x:Name="lTasks" Grid.Row="1" MouseDoubleClick="lTasks_MouseDoubleClick" CellEditEnding="lTasks_CellEditEnding"></DataGrid>
     </Grid>
 </Window>

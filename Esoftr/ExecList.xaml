@@ -1,0 +1,30 @@
+﻿<Window x:Class="Esoftr.ExecList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Esoftr"
+        mc:Ignorable="d"
+        Title="Исполнители" Height="450" Width="800" Icon="logo.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="add" Grid.Row="0" Width="100" Height="30" Margin="547,10,145,10" Background="#FF00D9BB" Content="Добавить" FontFamily="Calibri" />
+        <Button x:Name="del" Grid.Row="0" Width="100" Height="30" Margin="682,10,11.333,10" Background="#FF00D9BB" Content="Удалить" FontFamily="Calibri" />
+        <Button x:Name="redc" Grid.Row="0" Width="100" Height="30" Margin="407,10,285,10" Background="#FF00D9BB" Content="Редактировать" FontFamily="Calibri"/>
+        <DataGrid x:Name="lExec" Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=Исполнитель}" Width="200" />
+                <DataGridHyperlinkColumn Header="Грейд" Binding="{Binding Path=Грейд}" Width="80" />
+                <DataGridTextColumn Header="Менеджер" Binding="{Binding Path=Менеджер}" Width="200" />
+                <DataGridTextColumn Header="Менеджер" Binding="{Binding Path=id}" Width="200" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Path=Статус}" Width="200"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

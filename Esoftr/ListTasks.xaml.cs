@@ -23,6 +23,7 @@ namespace Esoftr
         int ro;
         int i;
         int idt;
+        bool dc=false;
         public ListTasks(int role, int id)
         {
             InitializeComponent();
@@ -184,8 +185,7 @@ namespace Esoftr
                 Model.Task task = db.Task.Where(p => p.ID.Equals(yt)).FirstOrDefault();
                 int id = task.ID;
                 idt = id;
-                AddTask ad = new AddTask(id,ro);
-                ad.Show();
+                dc =true;
             }
         }
 
@@ -198,26 +198,46 @@ namespace Esoftr
         {
             using(Model1 db=new Model1())
             {
-                Model.Task task = db.Task.Find(idt);
-                db.Task.Remove(task);
-                MessageBox.Show("Задача удалена");
-                db.SaveChanges();
+                if (dc == true)
+                {
+                    Model.Task task = db.Task.Find(idt);
+                    db.Task.Remove(task);
+                    MessageBox.Show("Задача удалена");
+                    db.SaveChanges();
+                }
+                else { MessageBox.Show("Выберите задачу двойным щелчком мыши"); }
             }
         }
 
-        private void lTasks_MouseDown(object sender, MouseButtonEventArgs e)
+        private void redc_Click(object sender, RoutedEventArgs e)
         {
+
             using (Model1 db = new Model1())
             {
-                string name = lTasks.SelectedValue.ToString();
-                string[] mas = name.Split(',');
-                string titl = mas[4].Substring(2);
-                string[] mas2 = titl.Split('=');
-                int yt = int.Parse(mas2[1].ToString().Remove(mas2[1].ToString().Length - 1));
-                Model.Task task = db.Task.Where(p => p.ID.Equals(yt)).FirstOrDefault();
-                idt = task.ID;
+                if(dc==true)
+                {
+                    Model.Task task = db.Task.Find(idt);
+                    AddTask ad = new AddTask(idt, ro);
+                    ad.Show();
+                }
+                else { MessageBox.Show("Выберите задачу двойным щелчком мыши"); }
             }
-            
         }
+
+
+
+        //private void lTasks_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    using (Model1 db = new Model1())
+        //    {
+        //        string name = lTasks.SelectedValue.ToString();
+        //        string[] mas = name.Split(',');
+        //        string titl = mas[4].Substring(2);
+        //        string[] mas2 = titl.Split('=');
+        //        int yt = int.Parse(mas2[1].ToString().Remove(mas2[1].ToString().Length - 1));
+        //        Model.Task task = db.Task.Where(p => p.ID.Equals(yt)).FirstOrDefault();
+        //        idt = task.ID;
+        //    }
+        //}
     }
 }
