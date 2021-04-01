@@ -48,5 +48,25 @@ namespace Esoftr
                 
             }
         }
+
+        private void cbzap_Checked(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void cbicp_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cbvyp_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cbotm_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

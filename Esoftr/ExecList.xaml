@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Esoftr"
         mc:Ignorable="d"
-        Title="Исполнители" Height="450" Width="800" Icon="logo.ico">
+        Title="Исполнители" Height="450" Width="850" Icon="logo.ico">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -17,6 +17,10 @@
         <Button x:Name="add" Grid.Row="0" Width="100" Height="30" Margin="547,10,145,10" Background="#FF00D9BB" Content="Добавить" FontFamily="Calibri" />
         <Button x:Name="del" Grid.Row="0" Width="100" Height="30" Margin="682,10,11.333,10" Background="#FF00D9BB" Content="Удалить" FontFamily="Calibri" />
         <Button x:Name="redc" Grid.Row="0" Width="100" Height="30" Margin="407,10,285,10" Background="#FF00D9BB" Content="Редактировать" FontFamily="Calibri"/>
+        <CheckBox Content="Запланирована" Margin="10,17,712,8" Grid.Row="0" Width="120" Height="25" x:Name="cbzap" IsChecked="True" FontFamily="Calibri" Checked="cbzap_Checked"/>
+        <CheckBox Content="Исполняется" Margin="136,17,606,8" Grid.Row="0" Width="100" Height="25" x:Name="cbicp" IsChecked="True" FontFamily="Calibri" Checked="cbicp_Checked"/>
+        <CheckBox Content="Выполнена" Margin="241,17,501,8" Grid.Row="0" Width="100" Height="25" x:Name="cbvyp" IsChecked="True" FontFamily="Calibri" Checked="cbvyp_Checked"/>
+        <CheckBox Content="Отменена" Margin="330,17,432,8" Grid.Row="0" Width="80" Height="25" x:Name="cbotm" IsChecked="True" FontFamily="Calibri" Checked="cbotm_Checked"/>
         <DataGrid x:Name="lExec" Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=Исполнитель}" Width="210" />
