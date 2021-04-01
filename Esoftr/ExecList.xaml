@@ -19,11 +19,14 @@
         <Button x:Name="redc" Grid.Row="0" Width="100" Height="30" Margin="407,10,285,10" Background="#FF00D9BB" Content="Редактировать" FontFamily="Calibri"/>
         <DataGrid x:Name="lExec" Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=Исполнитель}" Width="200" />
-                <DataGridHyperlinkColumn Header="Грейд" Binding="{Binding Path=Грейд}" Width="80" />
+                <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=Исполнитель}" Width="210" />
+                <DataGridHyperlinkColumn Header="Грейд" Binding="{Binding Path=Грейд}" Width="50" />
+                <DataGridTextColumn Header="id" Binding="{Binding Path=id}" Width="200" Visibility="Hidden"/>
+                <DataGridHyperlinkColumn Header="Запланирована" Binding="{Binding Path=Запланирована}" Width="100" />
+                <DataGridHyperlinkColumn Header="Исполняется" Binding="{Binding Path=Исполняется}" Width="80" />
+                <DataGridHyperlinkColumn Header="Выполнена" Binding="{Binding Path=Выполнена}" Width="80" />
+                <DataGridHyperlinkColumn Header="Отменена" Binding="{Binding Path=Отменена}" Width="80" />
                 <DataGridTextColumn Header="Менеджер" Binding="{Binding Path=Менеджер}" Width="200" />
-                <DataGridTextColumn Header="Менеджер" Binding="{Binding Path=id}" Width="200" Visibility="Hidden"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Path=Статус}" Width="200"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -31,17 +31,13 @@ namespace Esoftr
 
         private void tttask_Click(object sender, RoutedEventArgs e)
         {
-            int id = i;
-            int role = r;
-            ListTasks lt = new ListTasks(role,id);
+            ListTasks lt = new ListTasks(r,i);
             lt.Show();
         }
 
         private void eeexec_Click(object sender, RoutedEventArgs e)
         {
-            int id = i;
-            int role = r;
-            ExecList lt = new ExecList(role, id);
+            ExecList lt = new ExecList(r, i);
             lt.Show();
         }
     }

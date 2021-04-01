@@ -29,29 +29,20 @@ namespace Esoftr
             {
                 ro = role;
                 i = id;
-                //var query = from a in db.User
-                //            join b in db.Task on a.ID equals b.ExecutorID
-                //            join c in db.Executor on a.ID equals c.ID
-                //            join d in db.User on c.ManagerID equals d.ID
-                //            where a.ID.Equals(i) 
-                //            group a by b.Status into g
-                //            select new
-                //            {
-                //                Исполнитель = a.FirstName + a.MiddleName + " " + a.LastName,
-                //                Грейд = c.Grade,
-                //                Менеджер = d.FirstName + d.MiddleName + " " + d.LastName,
-                //                Статус = b.Status,
-                //                id = a.ID
-                //            };
-                var query = from a in db.Task
-                            //where a.ID == id
-                            group a by a.Status into g
+
+                var query = from a in db.User
+                            where a.ID < 11 || a.ID > 13
+                            group a by a.ID into g
                             select new
                             {
-                                id=db.User.Where(p=>p.ID==i).FirstOrDefault().ID,
-                                Исполнитель = db.User.Where(p=>p.ID==i).FirstOrDefault().FirstName+ " "+ db.User.Where(p => p.ID == i).FirstOrDefault().MiddleName + " " + db.User.Where(p => p.ID == i).FirstOrDefault().LastName,
-                                Грейд = db.Executor.Where(p=>p.ID==i).FirstOrDefault().Grade,
-                                Менеджер = db.Executor.Join(db.User,p=>p.ManagerID,c=>c.ID,(p,c)=>c.FirstName+ c.MiddleName+c.LastName)
+                                id = g.Key,
+                                Исполнитель = db.User.Where(p => p.ID == g.Key).FirstOrDefault().FirstName + db.User.Where(p => p.ID == g.Key).FirstOrDefault().MiddleName + " " + db.User.Where(p => p.ID == g.Key).FirstOrDefault().LastName,
+                                Грейд = db.Executor.Where(p => p.ID == g.Key).FirstOrDefault().Grade,
+                                Запланирована = db.Task.Where(p => p.ExecutorID == g.Key && p.Status == "запланирована").Count(),
+                                Исполняется = db.Task.Where(p => p.ExecutorID == g.Key && p.Status == "исполняется").Count(),
+                                Выполнена = db.Task.Where(p => p.ExecutorID == g.Key && p.Status == "выполнена").Count(),
+                                Отменена = db.Task.Where(p => p.ExecutorID == g.Key && p.Status == "отменена").Count(),
+                                Менеджер = db.Executor.Where(p=>p.ID==g.Key).Join(db.User, p => p.ManagerID, c => c.ID, (p, c) => c.FirstName + c.MiddleName + " " + c.LastName).FirstOrDefault()
                             };
                 lExec.ItemsSource = query.ToList();
                 
